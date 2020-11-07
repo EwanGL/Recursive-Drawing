@@ -1,5 +1,6 @@
 import turtle
 import random
+import time
 
 # réglage des paramètres du dessin
 turtle.setup(width = 600, height = 600, startx = 100, starty= 100)
@@ -17,8 +18,7 @@ turtle.pendown()
 def choisir_couleur():
     turtle.color(0,random.randint(130,255),0)
 
-
-def arbre(n, longueur) :
+def tree(n, longueur) :
     choisir_couleur()
     angle_gauche = 30
     angle_droite = 45
@@ -28,12 +28,32 @@ def arbre(n, longueur) :
     else :
         turtle.forward(longueur)
         turtle.left(angle_gauche)
-        arbre(n-1, longueur)
+        tree(n-1, longueur)
         turtle.right (angle_gauche + angle_droite)
-        arbre(n-1, longueur)
+        tree(n-1, longueur)
         turtle.left(angle_droite)
         turtle.backward(longueur)
-        
-        
+
+def my_tree(n, length=50):
+    choisir_couleur()
+    left = 30
+    right = 45
+    if n == 0:
+        turtle.forward(length)
+        turtle.backward(length)
+    else:
+        turtle.forward(length)
+        turtle.backward(length/4)
+        turtle.left(left)
+        my_tree(n-1)
+        turtle.right(left)
+        turtle.backward(length/4)
+        turtle.right(right)
+        my_tree(n-1)
+        turtle.left(right)
+        turtle.backward(length/2)
+
 turtle.left(90)
-arbre(5,40)
+# tree(3,40)
+my_tree(2)
+time.sleep(1)
