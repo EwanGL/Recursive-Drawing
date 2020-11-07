@@ -64,7 +64,22 @@ def cote(n, length):
         turtle.left(60)
         cote(n-1, length/3)
 
+def napperon(n):
+    choisir_couleur()
+    length = 50
+    if n == 1:
+        turtle.forward(length)
+    else:
+        napperon(n-1)
+        turtle.left(90)
+        napperon(n-1)
+        for _ in range(2):
+            turtle.right(90)
+            napperon(n-1)
+        turtle.left(90)
+        napperon(n-1)
 
-cote(3,100)
+# cote(3,100)
+napperon(3)
 turtle.penup()
 time.sleep(1)
